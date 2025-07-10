@@ -1,3 +1,37 @@
+// Обновленный script.js
+function setActiveNav() {
+  const currentPage = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-button').forEach(button => {
+    button.classList.remove('active');
+    if (button.getAttribute('href') === currentPage) {
+      button.classList.add('active');
+    }
+  });
+}
+
+function setupDropdown() {
+  const projectBtn = document.getElementById("project-button");
+  const dropdown = document.getElementById("dropdown");
+  
+  if (projectBtn && dropdown) {
+    projectBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropdown.classList.toggle("show");
+    });
+
+    // Закрытие при клике вне дропдауна
+    document.addEventListener("click", () => {
+      dropdown.classList.remove("show");
+    });
+
+    // Предотвращаем закрытие при клике внутри дропдауна
+    dropdown.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  }
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   let buttonShineLoaded = false;
   let copyEmailLoaded = false;
@@ -8,9 +42,11 @@ window.addEventListener('DOMContentLoaded', () => {
   let unloadShineTimer = null;
   let unloadCopyTimer = null;
 
-  const projectBtn = document.getElementById("project-button");
-  const dropdown = document.getElementById("dropdown");
   const emailButton = document.getElementById("copy-email");
+
+  // Инициализация
+  setActiveNav();
+  setupDropdown();
 
   // Универсальная функция загрузки скрипта с коллбэками
   function loadScript(src, onLoad, onError) {
@@ -97,11 +133,8 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('mouseleave', onButtonMouseLeave);
   });
 
-  emailButton.addEventListener('mouseenter', onEmailMouseEnter);
-  emailButton.addEventListener('mouseleave', onEmailMouseLeave);
-
-  // Дропдаун кнопка
-  projectBtn.addEventListener("click", () => {
-    dropdown.classList.toggle("show");
-  });
+  if (emailButton) {
+    emailButton.addEventListener('mouseenter', onEmailMouseEnter);
+    emailButton.addEventListener('mouseleave', onEmailMouseLeave);
+  }
 });

@@ -211,3 +211,55 @@ header p {
   word-break: break-word; /* чтобы переносы были корректные */
   letter-spacing: 0.05em; /* чуть увеличит расстояние между буквами */
 }
+
+/* Добавлено в style.css */
+/* Навигация */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 1.5rem 0;
+}
+
+.nav-button {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--butt-color);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #5a0000;
+  transform: translateY(-3px);
+}
+
+.nav-button.active {
+  background-color: #2a0000;
+  box-shadow: 0 0 10px rgba(255, 50, 50, 0.5);
+}
+
+/* Главная страница */
+.intro {
+  background: rgba(30, 0, 0, 0.4);
+  padding: 1.5rem;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+/* Адаптив навигации */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nav-button {
+    width: 100%;
+    text-align: center;
+    margin: 0.3rem 0;
+  }
+}
