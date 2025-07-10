@@ -1,0 +1,213 @@
+:root {
+  --butt-color: rgb(117, 1, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  background: url('retrosamurai.gif') no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.6); /* затемнение */
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+header {
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.1rem;
+  color: #ccc;
+}
+
+.block {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  width: 45%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.block h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #666;
+  padding-bottom: 0.5rem;
+}
+
+/* Объединённые стили для ссылок в блоке .links */
+.links a {
+  display: inline-block;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem 1.2rem;       
+  background-color: var(--butt-color);
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.links a:hover {
+  background-color: #740404;
+}
+
+.project button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--butt-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* Дропдаун с анимацией плавного появления */
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  margin-top: 0.5rem; /* вот этот отступ сверху */
+
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+
+.dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+.dropdown a {
+  color: #fff;
+  background: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.dropdown a:hover {
+  background: #444;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap; /* чтобы не разваливалось на мобилках */
+}
+
+.justabutton {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.justabutton.shine-effect::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%) rotate(25deg);
+  animation: shineAnimation 0.9s forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes shineAnimation {
+  100% {
+    transform: translateX(100%) rotate(25deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.justabutton:hover {
+  animation: bounce 2.5s ease-in-out infinite;
+}
+
+::selection {
+  background: var(--butt-color);
+  color: white;
+}
+
+/* Адаптив для мобилок */
+@media (max-width: 600px) {
+  .flex-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .block {
+    width: 90% !important; /* блоки чуть шире на мобилках */
+  }
+  
+  .links a,
+  .project button {
+    display: block;
+    width: 100%;
+    max-width: 400px; /* ограничиваем максимальную ширину для красоты */
+    margin: 0.5rem auto; /* центрируем по горизонтали */
+    box-sizing: border-box;
+  }
+  
+  .dropdown {
+    max-width: 400px;
+    width: 100%;
+  }
+}
+
+header p {
+  line-height: 1.4; /* или 1.5 — чтобы строки не слипались */
+  word-break: break-word; /* чтобы переносы были корректные */
+  letter-spacing: 0.05em; /* чуть увеличит расстояние между буквами */
+}
